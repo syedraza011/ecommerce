@@ -1,21 +1,19 @@
-import ReactDOM from 'react-dom/client';
-import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Link} from 'react-router-dom';
+import React from "react";
+import { ReactDOM } from "react";
+import { createRoot } from "react-dom/client";
+import { Main } from "./components";
+/* Import and destructure main from src/component/index.js 
+and anything else you may need here */
+import { Provider } from "react-redux";
 
+import configureStore from "./store";
+const container = document.getElementById("root");
+const root = createRoot(container);
 
-const App = ()=> {
-  return (
-    <div>
-      <h1>React Client Template</h1>
-      <nav>
-        <Link to='/'>Home</Link>
-      </nav>
-      <Routes>
-        <Route path='/' element= { <div>Home</div>}/>} />
-      </Routes> 
-    </div>
-
-  );
-};
-const root = ReactDOM.createRoot(document.querySelector('#root'));
-root.render(<HashRouter><App /></HashRouter>);
+root.render(
+  //   <React.StrictMode>
+  <Provider store={configureStore}>
+    <Main />
+  </Provider>
+  //   </React.StrictMode>
+);
